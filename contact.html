@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sound Stage — Контакты и Галерея</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">♪</span>
+        <span class="logo-text">Sound Stage</span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="contact.html" class="current-page">Контакты</a></li>
+        </ul>
+      </nav>
+      <a href="contact.html" class="btn btn-primary header-cta">Заявка</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header-section">
+      <div class="container">
+        <h1>Свяжитесь с нами и Галерея</h1>
+        <p>Забронируйте дату, задайте вопрос или посмотрите фото с наших прошедших шоу</p>
+      </div>
+    </section>
+
+    <section class="booking-section">
+      <div class="container booking-grid">
+        <div class="booking-form-container">
+          <h2>Форма бронирования и связи</h2>
+          <form class="contact-form" action="#" method="post">
+            <div class="form-group">
+              <label for="name">Ваше имя *</label>
+              <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Ваш Email *</label>
+              <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Номер телефона *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+7 (777) 000-00-00" required>
+            </div>
+
+            <div class="form-group">
+              <label for="event-type">Тип мероприятия</label>
+              <select id="event-type" name="event-type">
+                <option value="concert">Концерт / Сольное выступление</option>
+                <option value="festival">Фестиваль / Open-Air</option>
+                <option value="corporate">Корпоративный ивент</option>
+                <option value="rent">Аренда оборудования</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Детали / Пожелания</label>
+              <textarea id="message" name="message" rows="5" placeholder="Укажите предполагаемую дату, город и кол-во гостей..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn">Отправить заявку</button>
+          </form>
+        </div>
+
+        <div class="location-info">
+          <h2>Контакты и Локация</h2>
+          <div class="info-box">
+            <p><strong>Адрес офиса:</strong><br>г. Астана, ул. Абылай хана, 49</p>
+            <p><strong>Телефон:</strong><br>+7 (705) 952 08 10</p>
+            <p><strong>Email:</strong><br>info@soundstage.kz</p>
+            <p><strong>Режим работы:</strong><br>Пн-Пт: 10:00 — 19:00</p>
+          </div>
+
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.6028084606275!2d71.4277712!3d51.1282071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424584033324f331%3A0x6d90a9d1d1f0!2z0YPQuy4g0JTQvtGB0YLRi9C6IDEwLCDQkNGB0YLQsNC90LA!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz" 
+              width="100%" 
+              height="250" 
+              style="border:0; border-radius: var(--radius);" 
+              allowfullscreen="" 
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <h2>Галерея наших мероприятий</h2>
+        <p>Яркие моменты со сцены и бэкстейджа</p>
+
+        <div class="media-gallery-grid">
+          <figure class="gallery-item">
+            <img src="event1.jpg" alt="Галерея 1">
+            <figcaption class="gallery-caption">Джаз под луной</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="event2.jpg" alt="Галерея 2">
+            <figcaption class="gallery-caption">Rock Arena 2026</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="event3.jpg" alt="Галерея 3">
+            <figcaption class="gallery-caption">CUPSIZE Live</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="event4.jpg" alt="Галерея 4">
+            <figcaption class="gallery-caption">Акустический сет</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="event5.jpg" alt="Галерея 5">
+            <figcaption class="gallery-caption">Light Show & EDM</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="event6.jpg" alt="Галерея 6">
+            <figcaption class="gallery-caption">Симфонический рок</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <h2>Часто задаваемые вопросы (FAQ)</h2>
+        
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-question">За сколько дней нужно бронировать оборудование или организацию?</summary>
+            <div class="faq-answer">
+              <p>Рекомендуем обращаться минимум за 2–3 недели до даты ивента, чтобы успеть согласовать технический райдер и забронировать артистов.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Предоставляете ли вы звукорежиссера и световика?</summary>
+            <div class="faq-answer">
+              <p>Да, в каждую услугу аренды сцены или сопровождения входит работа нашей профессиональной команды инженеров.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Работаете ли вы в других городах и за пределами страны?</summary>
+            <div class="faq-answer">
+              <p>Да, наша команда выезжает по всему Казахстану и стран СНГ. Транспортировка рассчитывается индивидуально.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-col">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">♪</span>
+          <span class="logo-text">Sound Stage</span>
+        </a>
+        <p>Организация музыкальных выступлений любого уровня сложности.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Навигация</h3>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="contact.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Контакты</h3>
+        <p>Email: info@soundstage.kz</p>
+        <p>Тел: +7 (705) 952 08 10</p>
+        <p>Адрес: г. Астана, ул. Абылай хана, 49</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Sound Stage. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
