@@ -1,0 +1,98 @@
+/* Forms layer for Sound Stage (Assignment 5).
+   Loaded AFTER Bootstrap and style.css, so it adapts Bootstrap's form
+   components to the site's existing dark theme and fills in styles
+   (booking grid, gallery, FAQ) the page structure already relies on. */
+
+/* ---- Bootstrap form controls in the dark theme ---- */
+.form-label { color: var(--text-main); font-weight: 600; margin-bottom: 6px; }
+.form-text  { color: var(--text-muted); }
+
+.form-control,
+.form-select {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.form-control::placeholder { color: #6f6f80; }
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--surface-2);
+  color: var(--text-main);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 .2rem rgba(216, 90, 48, .3);
+}
+.form-select option { background-color: var(--surface-2); color: var(--text-main); }
+
+.form-check-input { background-color: var(--surface-2); border-color: var(--text-muted); }
+.form-check-input:checked { background-color: var(--primary); border-color: var(--primary); }
+.form-check-input:focus { border-color: var(--primary); box-shadow: 0 0 0 .2rem rgba(216, 90, 48, .3); }
+.form-check-label { color: var(--text-main); }
+
+fieldset { border: 0; min-width: 0; }
+legend { float: none; width: auto; font-size: 1rem; font-weight: 600; margin-bottom: 8px; padding: 0; }
+
+/* Validation feedback: readable on dark surfaces */
+.valid-feedback   { color: #5fd08a; }
+.invalid-feedback { color: #ff8a73; }
+.form-control.is-invalid, .form-select.is-invalid,
+.was-validated .form-control:invalid, .was-validated .form-select:invalid { border-color: #ff6b4d; }
+.form-control.is-valid, .form-select.is-valid,
+.was-validated .form-control:valid, .was-validated .form-select:valid { border-color: #3fb56e; }
+
+/* ---- Form cards and layout ---- */
+.form-card {
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.form-card h2 { margin-bottom: 8px; }
+.form-intro { margin-bottom: 20px; }
+
+.form-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+
+.success-box {
+  background-color: rgba(63, 181, 110, .12);
+  border: 1px solid #3fb56e;
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-top: 20px;
+  color: var(--text-main);
+}
+.success-box p { color: var(--text-main); }
+
+/* Button.btn in style.css is custom; make <button> match <a.btn> */
+button.btn { font-family: inherit; }
+
+/* ---- Contact page structure ---- */
+.booking-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.info-box {
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.info-box p { color: var(--text-main); }
+.map-container iframe { display: block; }
+
+.register-link { margin-top: 16px; }
+.register-link a { color: var(--primary); text-decoration: underline; }
+
+.gallery-section h2 { margin-bottom: 8px; }
+.media-gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
+.gallery-item { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border-color); }
+.gallery-item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.gallery-caption { padding: 8px 12px; font-size: .9rem; color: var(--text-muted); background-color: var(--surface-1); }
+
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { background-color: var(--surface-1); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 14px 18px; }
+.faq-question { cursor: pointer; font-weight: 600; }
+.faq-answer { margin-top: 10px; }
+
+@media (min-width: 48rem) {
+  .booking-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  .media-gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
