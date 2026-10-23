@@ -1,13 +1,8 @@
-/* Sound Stage - form validation (Assignment 5)
-   Works with HTML5 validation attributes (required, minlength, maxlength, type="email")
-   and Bootstrap's .is-valid / .is-invalid classes. Feedback is recalculated from the
-   field's real state each time, never hard-coded. */
 (function () {
   'use strict';
 
   var FIELD_SELECTOR = '.form-control, .form-select';
 
-  /* HTML5 attributes cannot compare two fields, so the password match is done in JS. */
   var pass = document.getElementById('password');
   var confirmPass = document.getElementById('confirmPassword');
   var confirmMsg = document.getElementById('confirmPasswordError');
@@ -19,7 +14,7 @@
       confirmPass.setCustomValidity('Пароли не совпадают.');
       confirmMsg.textContent = 'Пароли не совпадают.';
     } else {
-      confirmPass.setCustomValidity('');   /* clears the error after correction */
+      confirmPass.setCustomValidity('');   
       confirmMsg.textContent = DEFAULT_CONFIRM_MSG;
     }
   }
@@ -28,7 +23,6 @@
     return Array.prototype.slice.call(form.querySelectorAll(FIELD_SELECTOR));
   }
 
-  /* Text fields: a value made only of spaces does not count as filled in. */
   function checkBlank(el) {
     var isText = el.tagName === 'TEXTAREA' || el.type === 'text';
     if (!isText) return;
@@ -40,7 +34,6 @@
     }
   }
 
-  /* Show valid / invalid state based on the browser's own validity result. */
   function paint(el) {
     checkBlank(el);
     var ok = el.checkValidity();
@@ -73,7 +66,6 @@
     });
   }
 
-  /* ---------- Contact form ---------- */
   var contact = document.getElementById('contactForm');
   if (contact) {
     var message = document.getElementById('contactMessage');
@@ -105,7 +97,6 @@
     });
   }
 
-  /* ---------- Registration form ---------- */
   var reg = document.getElementById('registerForm');
   if (reg) {
         var regOk = document.getElementById('registerSuccess');

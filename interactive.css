@@ -1,0 +1,200 @@
+body.light-theme {
+  --bg-color: #f6f3f1;
+  --surface-1: #ffffff;
+  --surface-2: #efe9e5;
+  --text-main: #2a1b16;
+  --text-muted: #5c5560;
+  --border-color: #d8d0ca;
+}
+ 
+body.light-theme .btn-primary {
+  color: #ffffff;
+}
+ 
+body.light-theme .valid-feedback {
+  color: #1b7f45;
+}
+ 
+body.light-theme .invalid-feedback,
+body.light-theme .error-text {
+  color: #b3261e;
+}
+
+#themeBtn,
+.logo-text {
+  white-space: nowrap;
+}
+ 
+.field-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+ 
+.field {
+  width: 100%;
+  max-width: 22rem;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--surface-2);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+ 
+.field:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+ 
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+ 
+.status-text {
+  margin-top: 12px;
+}
+ 
+.error-text {
+  color: #ff8a73;
+  font-weight: 600;
+}
+ 
+.welcome-section {
+  background-color: var(--surface-1);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+ 
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+ 
+.faq-question::after {
+  content: "+";
+  flex-shrink: 0;
+  color: var(--primary);
+}
+ 
+.faq-question[aria-expanded="true"]::after {
+  content: "\2212";
+}
+ 
+/* Task 4. Список желаний */
+.wish-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+ 
+.wish-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: var(--surface-1);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+ 
+.wish-list .btn {
+  padding: 6px 12px;
+}
+
+[hidden] {
+  display: none !important;
+}
+ 
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+ 
+.status-text {
+  margin-top: 12px;
+}
+ 
+.error-text {
+  color: #ff8a73;
+  font-weight: 600;
+}
+ 
+.welcome-section {
+  background-color: var(--surface-1);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+ 
+.faq-question {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+ 
+.faq-question::after {
+  content: "+";
+  float: right;
+  color: var(--primary);
+}
+ 
+.faq-question[aria-expanded="true"]::after {
+  content: "\2212";
+}
+ 
+.wish-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+ 
+.wish-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: var(--surface-1);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+ 
+.wish-list .btn {
+  padding: 6px 12px;
+}
+
+[hidden] {
+  display: none !important;
+}

@@ -1,9 +1,3 @@
-/* Forms layer for Sound Stage (Assignment 5).
-   Loaded AFTER Bootstrap and style.css, so it adapts Bootstrap's form
-   components to the site's existing dark theme and fills in styles
-   (booking grid, gallery, FAQ) the page structure already relies on. */
-
-/* ---- Bootstrap form controls in the dark theme ---- */
 .form-label { color: var(--text-main); font-weight: 600; margin-bottom: 6px; }
 .form-text  { color: var(--text-muted); }
 
@@ -33,7 +27,6 @@
 fieldset { border: 0; min-width: 0; }
 legend { float: none; width: auto; font-size: 1rem; font-weight: 600; margin-bottom: 8px; padding: 0; }
 
-/* Validation feedback: readable on dark surfaces */
 .valid-feedback   { color: #5fd08a; }
 .invalid-feedback { color: #ff8a73; }
 .form-control.is-invalid, .form-select.is-invalid,
@@ -41,7 +34,6 @@ legend { float: none; width: auto; font-size: 1rem; font-weight: 600; margin-bot
 .form-control.is-valid, .form-select.is-valid,
 .was-validated .form-control:valid, .was-validated .form-select:valid { border-color: #3fb56e; }
 
-/* ---- Form cards and layout ---- */
 .form-card {
   background-color: var(--surface-1);
   border: 1px solid var(--border-color);
@@ -63,10 +55,8 @@ legend { float: none; width: auto; font-size: 1rem; font-weight: 600; margin-bot
 }
 .success-box p { color: var(--text-main); }
 
-/* Button.btn in style.css is custom; make <button> match <a.btn> */
 button.btn { font-family: inherit; }
 
-/* ---- Contact page structure ---- */
 .booking-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
 .info-box {
   background-color: var(--surface-1);

@@ -8,9 +8,11 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="responsive.css">
   <link rel="stylesheet" href="forms.css">
+  <link rel="stylesheet" href="interactive.css">
+  <script src="interactive.js" defer></script>
 </head>
 <body>
-
+ 
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="logo">
@@ -26,10 +28,11 @@
           <li><a href="register.html">Регистрация</a></li>
         </ul>
       </nav>
+      <button type="button" id="themeBtn" class="btn btn-secondary">Светлая тема</button>
       <a href="contact.html" class="btn btn-primary header-cta">Заявка</a>
     </div>
   </header>
-
+ 
   <main>
     <section class="page-header-section">
       <div class="container">
@@ -37,7 +40,7 @@
         <p>Забронируйте дату, задайте вопрос или посмотрите фото с наших прошедших шоу</p>
       </div>
     </section>
-
+ 
     <section class="booking-section">
       <div class="container booking-grid">
         <div class="booking-form-container form-card">
@@ -54,7 +57,7 @@
                 <div class="valid-feedback">Имя указано верно.</div>
                 <div class="invalid-feedback" data-for="name">Введите имя, не короче 2 символов.</div>
               </div>
-
+ 
               <div class="col-12 col-md-6">
                 <label for="contactEmail" class="form-label">Email</label>
                 <input type="email" class="form-control" id="contactEmail" name="email"
@@ -64,7 +67,7 @@
                 <div class="valid-feedback">Email выглядит корректно.</div>
                 <div class="invalid-feedback" data-for="email">Введите email в формате name@domain.com.</div>
               </div>
-
+ 
               <div class="col-12">
                 <label for="contactMessage" class="form-label">Сообщение</label>
                 <textarea class="form-control" id="contactMessage" name="message" rows="5"
@@ -77,7 +80,7 @@
                 <div class="invalid-feedback" data-for="message">Сообщение должно содержать от 10 до 500 символов.</div>
               </div>
             </div>
-
+ 
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Отправить заявку</button>
             </div>
@@ -87,7 +90,7 @@
           </form>
           <p class="register-link">Хотите получать афишу первыми? <a href="register.html">Создайте профиль слушателя</a>.</p>
         </div>
-
+ 
         <div class="location-info">
           <h2>Контакты и Локация</h2>
           <div class="info-box">
@@ -96,7 +99,7 @@
             <p><strong>Email:</strong><br>info@soundstage.kz</p>
             <p><strong>Режим работы:</strong><br>Пн-Пт: 10:00 — 19:00</p>
           </div>
-
+ 
           <div class="map-container">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.6028084606275!2d71.4277712!3d51.1282071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424584033324f331%3A0x6d90a9d1d1f0!2z0YPQuy4g0JTQvtGB0YLRi9C6IDEwLCDQkNGB0YLQsNC90LA!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz" 
@@ -110,12 +113,12 @@
         </div>
       </div>
     </section>
-
+ 
     <section class="gallery-section">
       <div class="container">
         <h2>Галерея наших мероприятий</h2>
         <p>Яркие моменты со сцены и бэкстейджа</p>
-
+ 
         <div class="media-gallery-grid">
           <figure class="gallery-item">
             <img src="event1.jpg" alt="Галерея 1">
@@ -144,37 +147,43 @@
         </div>
       </div>
     </section>
-
+ 
     <section class="faq-section">
       <div class="container">
         <h2>Часто задаваемые вопросы (FAQ)</h2>
-        
+ 
         <div class="faq-list">
-          <details class="faq-item">
-            <summary class="faq-question">За сколько дней нужно бронировать оборудование или организацию?</summary>
-            <div class="faq-answer">
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+              За сколько дней нужно бронировать оборудование или организацию?
+            </button>
+            <div class="faq-answer" id="faq-answer-1" hidden>
               <p>Рекомендуем обращаться минимум за 2–3 недели до даты ивента, чтобы успеть согласовать технический райдер и забронировать артистов.</p>
             </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-question">Предоставляете ли вы звукорежиссера и световика?</summary>
-            <div class="faq-answer">
+          </div>
+ 
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+              Предоставляете ли вы звукорежиссера и световика?
+            </button>
+            <div class="faq-answer" id="faq-answer-2" hidden>
               <p>Да, в каждую услугу аренды сцены или сопровождения входит работа нашей профессиональной команды инженеров.</p>
             </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-question">Работаете ли вы в других городах и за пределами страны?</summary>
-            <div class="faq-answer">
-              <p>Да, наша команда выезжает по всему Казахстану и стран СНГ. Транспортировка рассчитывается индивидуально.</p>
+          </div>
+ 
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+              Работаете ли вы в других городах и за пределами страны?
+            </button>
+            <div class="faq-answer" id="faq-answer-3" hidden>
+              <p>Да, наша команда выезжает по всему Казахстану и странам СНГ. Транспортировка рассчитывается индивидуально.</p>
             </div>
-          </details>
+          </div>
         </div>
       </div>
     </section>
   </main>
-
+ 
   <footer class="site-footer">
     <div class="container footer-container">
       <div class="footer-col">
@@ -207,8 +216,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
   <script src="forms.js"></script>
 </body>
 </html>

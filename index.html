@@ -6,9 +6,11 @@
   <title>Sound Stage — Главная</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="interactive.css">
+  <script src="interactive.js" defer></script>
 </head>
 <body>
-
+ 
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="logo">
@@ -24,10 +26,11 @@
           <li><a href="register.html">Регистрация</a></li>
         </ul>
       </nav>
+      <button type="button" id="themeBtn" class="btn btn-secondary">Светлая тема</button>
       <a href="contact.html" class="btn btn-primary header-cta">Заявка</a>
     </div>
   </header>
-
+ 
   <main>
     <section class="hero-section">
       <div class="container hero-content">
@@ -39,7 +42,19 @@
         </div>
       </div>
     </section>
-
+ 
+    <section class="welcome-section" id="task0">
+      <div class="container">
+        <h2>Давайте познакомимся</h2>
+        <label for="welcomeName" class="field-label">Как вас зовут?</label>
+        <div class="inline-form">
+          <input type="text" id="welcomeName" class="field" placeholder="Например, Айгерим">
+          <button type="button" id="welcomeBtn" class="btn btn-primary">Поприветствовать</button>
+        </div>
+        <p id="welcomeMessage" class="status-text">Введите имя, и мы вас поприветствуем.</p>
+      </div>
+    </section>
+ 
     <section class="about-summary-section">
       <div class="container">
         <h2>О компании Sound Stage</h2>
@@ -59,10 +74,16 @@
         </div>
       </div>
     </section>
-
+ 
     <section class="upcoming-events-section">
       <div class="container">
         <h2>Ближайшие выступления</h2>
+ 
+        <label for="searchInput" class="field-label">Поиск по названию</label>
+        <input type="text" id="searchInput" class="field" placeholder="Например, rock">
+        <p id="searchCount" class="status-text" aria-live="polite">Найдено: 6 из 6</p>
+        <p id="searchEmpty" class="status-text" hidden>Ничего не найдено</p>
+ 
         <div class="events-grid">
           <article class="event-card">
             <figure class="event-media">
@@ -74,7 +95,7 @@
                 <p>Локация: Перт, Австралия (RAC Arena)</p>
             </div>
           </article>
-
+ 
           <article class="event-card">
             <figure class="event-media">
                 <img src="event2.jpg" alt="System of a Down Live" class="event-img">
@@ -85,18 +106,18 @@
                 <p>Локация: Форт-Уэрт, Техас, США (Texas Motor Speedway)</p>
             </div>
           </article>
-
+ 
           <article class="event-card">
             <figure class="event-media">
                 <img src="event3.jpg" alt="CUPSIZE Концерт" class="event-img">
             </figure>
             <div class="event-body">
-                <span class="event-date">27 сентября 2026 • 19:00</span>
+                <span class="event-date">27 октября 2026 • 19:00</span>
                 <h3>CUPSIZE — Осенний Тур</h3>
                 <p>Локация: Екатеринбург, Концерт-холл «Свобода»</p>
             </div>
           </article>
-
+ 
           <article class="event-card">
             <figure class="event-media">
               <img src="event4.jpg" alt="Acoustic Session" class="event-img">
@@ -107,7 +128,7 @@
               <p>Локация: Караганда, Loft Club</p>
             </div>
           </article>
-
+ 
           <article class="event-card">
             <figure class="event-media">
               <img src="event5.jpg" alt="Electronic Beats Night" class="event-img">
@@ -118,7 +139,7 @@
               <p>Локация: Астана, EXPO Arena</p>
             </div>
           </article>
-
+ 
           <article class="event-card">
             <figure class="event-media">
               <img src="event6.jpg" alt="Symphony Rock Show" class="event-img">
@@ -132,7 +153,23 @@
         </div>
       </div>
     </section>
-
+ 
+    <section class="wishlist-section" id="task4">
+      <div class="container">
+        <h2>Мой список желаний</h2>
+        <form id="wishForm" novalidate>
+          <label for="wishInput" class="field-label">Название концерта или артиста</label>
+          <div class="inline-form">
+            <input type="text" id="wishInput" class="field" autocomplete="off">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+          </div>
+        </form>
+        <p id="wishError" class="status-text error-text" hidden>Введите название, пустое значение добавить нельзя.</p>
+        <p id="wishCount" class="status-text" aria-live="polite">В списке: 0</p>
+        <ul id="wishList" class="wish-list"></ul>
+      </div>
+    </section>
+ 
     <section class="cta-section">
       <div class="container cta-box">
         <h2>Хотите организовать незабываемый ивент?</h2>
@@ -141,7 +178,7 @@
       </div>
     </section>
   </main>
-
+ 
   <footer class="site-footer">
     <div class="container footer-container">
       <div class="footer-col">
@@ -170,10 +207,10 @@
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>2026 Sound Stage. Все права защищены.</p>
+        <p>&copy; 2026 Sound Stage. Все права защищены.</p>
       </div>
     </div>
   </footer>
-
+ 
 </body>
 </html>
