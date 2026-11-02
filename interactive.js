@@ -1,126 +1,133 @@
-var themeBtn = document.getElementById("themeBtn");
- 
-if (themeBtn) {
-  themeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("light-theme");
- 
-    var isLight = document.body.classList.contains("light-theme");
- 
-    if (isLight) {
-      themeBtn.textContent = "Тёмная тема";
-    } else {
-      themeBtn.textContent = "Светлая тема";
-    }
-    if (document.documentElement.hasAttribute("data-bs-theme")) {
-      document.documentElement.setAttribute("data-bs-theme", isLight ? "light" : "dark");
-    }
-  });
-}
- 
-var welcomeName = document.getElementById("welcomeName");
-var welcomeBtn = document.getElementById("welcomeBtn");
-var welcomeMessage = document.querySelector("#welcomeMessage");
- 
-if (welcomeBtn) {
-  welcomeBtn.addEventListener("click", function () {
-    var name = welcomeName.value.trim();
- 
-    if (name === "") {
-      welcomeMessage.textContent = "Пожалуйста, введите имя, и мы вас поприветствуем.";
-    } else {
-      welcomeMessage.textContent = "Добро пожаловать в Sound Stage, " + name + "! Выбирайте концерт ниже.";
-    }
-  });
-}
-
-var faqButtons = document.querySelectorAll(".faq-question");
- 
-for (var i = 0; i < faqButtons.length; i++) {
-  faqButtons[i].addEventListener("click", function () {
-    var answer = document.getElementById(this.getAttribute("aria-controls"));
- 
-    answer.hidden = !answer.hidden;
- 
-    this.setAttribute("aria-expanded", String(!answer.hidden));
-  });
-}
- 
-
-var searchInput = document.getElementById("searchInput");
-var searchCount = document.getElementById("searchCount");
-var searchEmpty = document.getElementById("searchEmpty");
-var eventCards = document.querySelectorAll(".events-grid .event-card");
- 
-function filterEvents() {
-  var query = searchInput.value.trim().toLowerCase();
-  var shown = 0;
- 
-  for (var i = 0; i < eventCards.length; i++) {
-    var title = eventCards[i].querySelector("h3").textContent.toLowerCase();
- 
-    if (title.includes(query)) {
-      eventCards[i].hidden = false;
-      shown++;
-    } else {
-      eventCards[i].hidden = true;
-    }
-  }
- 
-  searchCount.textContent = "Найдено: " + shown + " из " + eventCards.length;
-  searchEmpty.hidden = shown !== 0;
-}
- 
-if (searchInput) {
-  searchInput.addEventListener("input", filterEvents);
-}
- 
-var wishForm = document.getElementById("wishForm");
-var wishInput = document.getElementById("wishInput");
-var wishList = document.getElementById("wishList");
-var wishCount = document.getElementById("wishCount");
-var wishError = document.getElementById("wishError");
- 
-function updateWishCount() {
-
-  wishCount.textContent = "В списке: " + wishList.children.length;
-}
- 
-if (wishForm) {
-  wishForm.addEventListener("submit", function (event) {
-    event.preventDefault(); 
- 
-    var text = wishInput.value.trim();
- 
-    if (text === "") {
-      wishError.hidden = false;
-      return;
-    }
-    wishError.hidden = true;
- 
-    var item = document.createElement("li");
- 
-    var itemText = document.createElement("span");
-    itemText.textContent = text;
- 
-    var removeBtn = document.createElement("button");
-    removeBtn.type = "button";
-    removeBtn.className = "btn btn-secondary";
-    removeBtn.textContent = "Удалить";
-    removeBtn.setAttribute("aria-label", "Удалить: " + text);
- 
-    removeBtn.addEventListener("click", function () {
-      item.remove();
-      updateWishCount();
+$(document).ready(function () {
+    var $themeBtn = $("#themeBtn");
+    $themeBtn.off("click").on("click", function (e) {
+        e.preventDefault();
+        $("body").toggleClass("light-theme");
+        var isLight = $("body").hasClass("light-theme");
+        $themeBtn.text(isLight ? "Тёмная тема" : "Светлая тема");
+        if ($("html").attr("data-bs-theme") !== undefined) {
+            $("html").attr("data-bs-theme", isLight ? "light" : "dark");
+        }
     });
- 
-    item.append(itemText);
-    item.append(removeBtn);
-    wishList.append(item);
- 
-    wishInput.value = "";
-    wishInput.focus();
-    updateWishCount();
-  });
- 
-  updateWishCount();
-}
+
+    var $welcomeName = $("#welcomeName");
+    var $welcomeBtn = $("#welcomeBtn");
+    var $welcomeMessage = $("#welcomeMessage");
+
+    $welcomeBtn.off("click").on("click", function (e) {
+        e.preventDefault();
+        var name = $welcomeName.val().trim();
+        if (name === "") {
+            $welcomeMessage.text("Пожалуйста, введите имя, и мы вас поприветствуем.");
+        } else {
+            $welcomeMessage.text("Добро пожаловать в Sound Stage, " + name + "! Выбирайте концерт ниже.");
+        }
+    });
+
+    var $faqButtons = $(".faq-question");
+    $faqButtons.off("click").on("click", function (e) {
+        e.preventDefault();
+        var $btn = $(this);
+        var targetId = $btn.attr("aria-controls");
+        var $answer = $("#" + targetId);
+        
+        if ($answer.is(":hidden") || $answer.attr("hidden")) {
+            $answer.removeAttr("hidden").hide().slideDown(300, function () {
+                $btn.attr("aria-expanded", "true");
+            });
+        } else {
+            $answer.slideUp(300, function () {
+                $(this).attr("hidden", "hidden");
+                $btn.attr("aria-expanded", "false");
+            });
+        }
+    });
+
+    var $searchInput = $("#searchInput");
+    var $searchCount = $("#searchCount");
+    var $searchEmpty = $("#searchEmpty");
+    var $eventCards = $(".events-grid .event-card");
+
+    function filterEvents() {
+        var query = $searchInput.val().trim().toLowerCase();
+        var shown = 0;
+
+        $eventCards.each(function () {
+            var $card = $(this);
+            var title = $card.find("h3").text().toLowerCase();
+
+            if (title.indexOf(query) !== -1) {
+                $card.show();
+                shown++;
+            } else {
+                $card.hide();
+            }
+        });
+
+        if ($searchCount.length) {
+            $searchCount.text("Найдено: " + shown + " из " + $eventCards.length);
+        }
+        if ($searchEmpty.length) {
+            if (shown === 0) {
+                $searchEmpty.removeAttr("hidden").show();
+            } else {
+                $searchEmpty.attr("hidden", "hidden").hide();
+            }
+        }
+    }
+
+    if ($searchInput.length) {
+        $searchInput.off("input").on("input", filterEvents);
+    }
+
+    var $wishForm = $("#wishForm");
+    var $wishInput = $("#wishInput");
+    var $wishList = $("#wishList");
+    var $wishCount = $("#wishCount");
+    var $wishError = $("#wishError");
+
+    function updateWishCount() {
+        if ($wishCount.length) {
+            var count = $wishList.children("li").length;
+            $wishCount.text("В списке: " + count);
+        }
+    }
+
+    if ($wishForm.length) {
+        $wishForm.off("submit").on("submit", function (e) {
+            e.preventDefault();
+            var text = $wishInput.val().trim();
+
+            if (text === "") {
+                if ($wishError.length) {
+                    $wishError.removeAttr("hidden").show();
+                }
+                return;
+            }
+            if ($wishError.length) {
+                $wishError.attr("hidden", "hidden").hide();
+            }
+
+            var $item = $("<li></li>");
+            var $itemText = $("<span></span>").text(text);
+            var $removeBtn = $("<button></button>")
+                .attr("type", "button")
+                .addClass("btn btn-secondary")
+                .text("Удалить")
+                .attr("aria-label", "Удалить: " + text);
+
+            $item.append($itemText, $removeBtn);
+            $wishList.append($item);
+
+            $wishInput.val("").focus();
+            updateWishCount();
+        });
+
+        $wishList.off("click", ".btn-secondary").on("click", ".btn-secondary", function () {
+            $(this).closest("li").remove();
+            updateWishCount();
+        });
+
+        updateWishCount();
+    }
+});

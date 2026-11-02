@@ -1,130 +1,141 @@
-(function () {
-  'use strict';
+$(document).ready(function () {
+    var $pass = $("#password");
+    var $confirmPass = $("#confirmPassword");
+    var $confirmMsg = $("#confirmPasswordError");
+    var defaultConfirmMsg = $confirmMsg.length ? $confirmMsg.text() : "";
 
-  var FIELD_SELECTOR = '.form-control, .form-select';
-
-  var pass = document.getElementById('password');
-  var confirmPass = document.getElementById('confirmPassword');
-  var confirmMsg = document.getElementById('confirmPasswordError');
-  var DEFAULT_CONFIRM_MSG = confirmMsg ? confirmMsg.textContent : '';
-
-  function matchPasswords() {
-    if (!pass || !confirmPass) return;
-    if (confirmPass.value !== '' && confirmPass.value !== pass.value) {
-      confirmPass.setCustomValidity('Пароли не совпадают.');
-      confirmMsg.textContent = 'Пароли не совпадают.';
-    } else {
-      confirmPass.setCustomValidity('');   
-      confirmMsg.textContent = DEFAULT_CONFIRM_MSG;
+    function matchPasswords() {
+        if (!$pass.length || !$confirmPass.length) return;
+        if ($confirmPass.val() !== "" && $confirmPass.val() !== $pass.val()) {
+            $confirmPass[0].setCustomValidity("Пароли не совпадают.");
+            $confirmMsg.text("Пароли не совпадают.");
+        } else {
+            $confirmPass[0].setCustomValidity("");
+            $confirmMsg.text(defaultConfirmMsg);
+        }
     }
-  }
 
-  function fieldsOf(form) {
-    return Array.prototype.slice.call(form.querySelectorAll(FIELD_SELECTOR));
-  }
-
-  function checkBlank(el) {
-    var isText = el.tagName === 'TEXTAREA' || el.type === 'text';
-    if (!isText) return;
-    var minLen = parseInt(el.getAttribute('minlength') || '0', 10);
-    if (el.value !== '' && el.value.trim().length < minLen) {
-      el.setCustomValidity('Слишком короткое значение (пробелы не считаются).');
-    } else {
-      el.setCustomValidity('');
+    function checkBlank($el) {
+        var isText = $el.is("textarea") || $el.attr("type") === "text";
+        if (!isText) return;
+        var minLen = parseInt($el.attr("minlength") || "0", 10);
+        if ($el.val() !== "" && $el.val().trim().length < minLen) {
+            $el[0].setCustomValidity("Слишком короткое значение.");
+        } else {
+            $el[0].setCustomValidity("");
+        }
     }
-  }
 
-  function paint(el) {
-    checkBlank(el);
-    var ok = el.checkValidity();
-    el.classList.toggle('is-valid', ok);
-    el.classList.toggle('is-invalid', !ok);
-  }
-
-  function clearPaint(form) {
-    fieldsOf(form).forEach(function (el) {
-      el.classList.remove('is-valid', 'is-invalid');
-      el.setCustomValidity('');
-    });
-  }
-
-  function validateAll(form) {
-    var firstBad = null;
-    fieldsOf(form).forEach(function (el) {
-      matchPasswords();
-      paint(el);
-      if (!el.checkValidity() && !firstBad) firstBad = el;
-    });
-    return firstBad;
-  }
-
-  function attachLive(form) {
-    fieldsOf(form).forEach(function (el) {
-      var evt = el.tagName === 'SELECT' ? 'change' : 'input';
-      el.addEventListener(evt, function () { paint(el); });
-      el.addEventListener('blur', function () { if (el.value !== '') paint(el); });
-    });
-  }
-
-  var contact = document.getElementById('contactForm');
-  if (contact) {
-    var message = document.getElementById('contactMessage');
-    var counter = document.getElementById('messageCounter');
-    var contactOk = document.getElementById('contactSuccess');
-
-    function updateCounter() {
-      counter.textContent = message.value.length + ' / ' + message.maxLength;
+    function paint($el) {
+        checkBlank($el);
+        var ok = $el[0].checkValidity();
+        $el.toggleClass("is-valid", ok);
+        $el.toggleClass("is-invalid", !ok);
     }
-    message.addEventListener('input', updateCounter);
-    updateCounter();
 
-    attachLive(contact);
+    function clearPaint($form) {
+        $form.find(".form-control, .form-select").each(function () {
+            var $el = $(this);
+            $el.removeClass("is-valid is-invalid");
+            $el[0].setCustomValidity("");
+        });
+    }
 
-    contact.addEventListener('submit', function (e) {
-      e.preventDefault();
-      contactOk.hidden = true;
-      var bad = validateAll(contact);
-      if (bad) { bad.focus(); return; }
-      contactOk.hidden = false;
-    });
+    function validateAll($form) {
+        var firstBad = null;
+        $form.find(".form-control, .form-select").each(function () {
+            var $el = $(this);
+            matchPasswords();
+            paint($el);
+            if (!$el[0].checkValidity() && !firstBad) {
+                firstBad = $el;
+            }
+        });
+        return firstBad;
+    }
 
-    contact.addEventListener('reset', function () {
-      setTimeout(function () {
-        clearPaint(contact);
-        contactOk.hidden = true;
-        updateCounter();
-      }, 0);
-    });
-  }
+    function attachLive($form) {
+        $form.find(".form-control, .form-select").each(function () {
+            var $el = $(this);
+            var evt = $el.is("select") ? "change" : "input";
+            $el.on(evt, function () { paint($el); });
+            $el.on("blur", function () { if ($el.val() !== "") paint($el); });
+        });
+    }
 
-  var reg = document.getElementById('registerForm');
-  if (reg) {
-        var regOk = document.getElementById('registerSuccess');
+    var $contact = $("#contactForm");
+    if ($contact.length) {
+        var $message = $("#contactMessage");
+        var $counter = $("#messageCounter");
+        var $contactOk = $("#contactSuccess");
 
-    attachLive(reg);
-    pass.addEventListener('input', function () {
-      matchPasswords();
-      if (confirmPass.value !== '') paint(confirmPass);
-    });
-    confirmPass.addEventListener('input', function () {
-      matchPasswords();
-      paint(confirmPass);
-    });
+        function updateCounter() {
+            if ($counter.length && $message.length) {
+                $counter.text($message.val().length + " / " + $message.attr("maxlength"));
+            }
+        }
+        
+        if ($message.length) {
+            $message.on("input", updateCounter);
+            updateCounter();
+        }
 
-    reg.addEventListener('submit', function (e) {
-      e.preventDefault();
-      regOk.hidden = true;
-      var bad = validateAll(reg);
-      if (bad) { bad.focus(); return; }
-      regOk.hidden = false;
-    });
+        attachLive($contact);
 
-    reg.addEventListener('reset', function () {
-      setTimeout(function () {
-        clearPaint(reg);
-        confirmMsg.textContent = DEFAULT_CONFIRM_MSG;
-        regOk.hidden = true;
-      }, 0);
-    });
-  }
-})();
+        $contact.on("submit", function (e) {
+            e.preventDefault();
+            $contactOk.attr("hidden", true).hide();
+            var $bad = validateAll($contact);
+            if ($bad) {
+                $bad.focus();
+                return;
+            }
+            $contactOk.removeAttr("hidden").show();
+        });
+
+        $contact.on("reset", function () {
+            setTimeout(function () {
+                clearPaint($contact);
+                $contactOk.attr("hidden", true).hide();
+                updateCounter();
+            }, 0);
+        });
+    }
+
+    var $reg = $("#registerForm");
+    if ($reg.length) {
+        var $regOk = $("#registerSuccess");
+
+        attachLive($reg);
+        
+        if ($pass.length && $confirmPass.length) {
+            $pass.on("input", function () {
+                matchPasswords();
+                if ($confirmPass.val() !== "") paint($confirmPass);
+            });
+            $confirmPass.on("input", function () {
+                matchParser = matchPasswords();
+                paint($confirmPass);
+            });
+        }
+
+        $reg.on("submit", function (e) {
+            e.preventDefault();
+            $regOk.attr("hidden", true).hide();
+            var $bad = validateAll($reg);
+            if ($bad) {
+                $bad.focus();
+                return;
+            }
+            $regOk.removeAttr("hidden").show();
+        });
+
+        $reg.on("reset", function () {
+            setTimeout(function () {
+                clearPaint($reg);
+                if ($confirmMsg.length) $confirmMsg.text(defaultConfirmMsg);
+                $regOk.attr("hidden", true).hide();
+            }, 0);
+        });
+    }
+});
